@@ -1,4 +1,4 @@
-export const desktopNavbarLinks = [
+export const navLinks = [
   { title: "Home", url: "/" },
   { title: "Resources", url: "/resources" },
   { title: "Organisations", url: "/organisations" },

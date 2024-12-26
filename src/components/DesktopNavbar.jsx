@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router";
 import logo from "../assets/logo.png";
-import { desktopNavbarLinks } from "../lib/navLinks";
+import { navLinks } from "../lib/navLinks";
 export default function DesktopNavbar() {
   return (
     <header className="sticky top-0 z-10 hidden w-full items-center justify-between bg-secondaryColor px-12 h-[10vh] lg:flex xl:px-16 2xl:h-36 2xl:px-20">
@@ -8,7 +8,7 @@ export default function DesktopNavbar() {
         <img src={logo} className="h-[5vh]" alt="website logo" />
       </Link>
       <ul className="flex gap-4 xl:gap-6 2xl:gap-8">
-        {desktopNavbarLinks.map((link, index) => {
+        {navLinks.map((link, index) => {
           return (<li key={index}>
             <NavLink
               to={link.url}
