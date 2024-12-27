@@ -5,6 +5,8 @@ import DesktopNavbar from "./components/DesktopNavbar";
 import MobileHeader from "./components/MobileHeader";
 import MobileMenu from "./components/MobileMenu";
 import MobileFooter from "./components/MobileFooter";
+import { Route, Routes } from "react-router";
+import Home from "./pages/Home";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,8 +22,11 @@ function App() {
       className={`flex min-h-screen w-screen flex-col justify-between ${isMenuOpen && "overscroll-none"}`}
     >
       <MobileHeader isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-      {isMenuOpen && <MobileMenu/>}
+      {isMenuOpen && <MobileMenu />}
       <DesktopNavbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
       <MobileFooter />
       <DesktopFooter />
     </div>
