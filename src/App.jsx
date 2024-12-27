@@ -7,6 +7,7 @@ import MobileMenu from "./components/MobileMenu";
 import MobileFooter from "./components/MobileFooter";
 import { Route, Routes } from "react-router";
 import Home from "./pages/Home";
+import Resources from "./pages/Resources";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,6 +27,7 @@ function App() {
       <DesktopNavbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/resources" element={<Resources />} />
       </Routes>
       <MobileFooter />
       <DesktopFooter />

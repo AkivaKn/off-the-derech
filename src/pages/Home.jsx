@@ -5,7 +5,7 @@ import BlogCard from "../components/BlogCard";
 
 export default function Home() {
   return (
-    <div className="flex-1">
+    <div className="flex-1 bg-backgroundColor">
       <section className="flex flex-col items-center justify-center gap-6 bg-primaryColor p-12 sm:p-16 md:p-28 lg:flex-row lg:gap-24">
         <div className="flex w-full flex-col justify-center gap-3 self-end lg:w-1/3 lg:gap-8">
           <h2 className="text-lg font-bold text-secondaryColor md:text-2xl lg:text-3xl 2xl:text-4xl">
