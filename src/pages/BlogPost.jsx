@@ -22,7 +22,7 @@ export default function BlogPost() {
           <p className="text-center text-base md:text-xl lg:text-2xl 2xl:text-3xl">Blog not found</p>
         </div>
       ) : (
-        <div className="flex-1 space-y-2 bg-backgroundColor p-6 md:space-y-4 md:p-8 lg:space-y-6 lg:p-12 xl:space-y-8 xl:p-16 2xl:p-20">
+        <div className="flex-1 space-y-3 bg-backgroundColor p-6 md:space-y-4 md:p-8 lg:space-y-6 lg:p-12 xl:space-y-8 xl:p-16 2xl:p-20">
           <h2 className="text-center text-lg font-bold text-primaryColor md:text-2xl lg:text-3xl 2xl:text-4xl">
             {currentBlog?.title}
           </h2>
@@ -34,7 +34,7 @@ export default function BlogPost() {
             {new Date(currentBlog?.postedAt).toLocaleDateString()}
           </p>
           {currentBlog?.bodyParagraphs?.map((paragraph, index) => {
-            return <p key={index}>{paragraph}</p>;
+            return <p key={index} className="text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl">{paragraph}</p>;
           })}
         </div>
       )}

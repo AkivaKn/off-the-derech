@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import Resources from "./pages/Resources";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import Contact from "./pages/Contact";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,6 +33,7 @@ function App() {
         <Route path="/resources" element={<Resources />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:blogId" element={<BlogPost />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
       <MobileFooter />
       <DesktopFooter />

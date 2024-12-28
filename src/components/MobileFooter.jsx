@@ -11,7 +11,7 @@ export default function MobileFooter() {
               <NavLink
                 to={link.url}
                 className={({ isActive }) =>
-                  `${isActive && "text-cardColor"} text-sm text-secondaryColor`
+                  `${isActive ? "text-cardColor" : "text-secondaryColor"} text-sm`
                 }
               >
                 {link.title}

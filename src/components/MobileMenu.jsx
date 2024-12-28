@@ -11,7 +11,7 @@ export default function MobileMenu() {
               <NavLink
                 to={link.url}
                 className={({ isActive }) =>
-                  `${isActive && "text-hoverColor"} text-lg uppercase text-primaryColor sm:text-xl md:text-2xl`
+                  `${isActive ? "text-hoverColor" : "text-primaryColor"} text-lg uppercase sm:text-xl md:text-2xl`
                 }
               >
                 {link.title}

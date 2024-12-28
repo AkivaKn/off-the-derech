@@ -5,7 +5,7 @@ import { Link } from "react-router";
 export default function BlogCard({ blog, index, length }) {
   return (
     <div
-      className={`flex w-full gap-4 py-4 md:gap-6 md:py-6 lg:gap-8 lg:py-8 xl:gap-10 xl:py-10 2xl:gap-12 2xl:py-12 ${index % 4 !== 0 ? "flex-col md:w-1/3 lg:w-1/4" : index === 0 ? "border-b-4 border-cardColor" : index === length - 1 ? "border-t-4 border-cardColor" : "border-y-4 border-cardColor"}`}
+      className={`flex w-full gap-4 py-4 md:gap-6 md:py-6 lg:gap-8 lg:py-8 xl:gap-10 xl:py-10 2xl:gap-12 2xl:py-12 ${index % 4 !== 0 ? "flex-col md:w-1/4" : index === 0 ? "md:border-b-4 md:border-cardColor" : index === length - 1 ? "md:border-t-4 md:border-cardColor" : "md:border-y-4 md:border-cardColor"}`}
     >
       {index % 4 === 0 && index % 8 !== 0 && (
         <p className="hidden w-2/3 text-xs md:block md:px-8 md:text-sm lg:px-12 lg:text-base xl:px-16 xl:text-lg 2xl:px-20 2xl:text-xl">
@@ -22,9 +22,7 @@ export default function BlogCard({ blog, index, length }) {
           to={`/blog/${blog.id}`}
           className="gap-2 text-base font-bold text-primaryColor hover:text-hoverColor md:gap-3 md:text-xl lg:gap-4 lg:text-2xl xl:gap-5 2xl:gap-6 2xl:text-3xl"
         >
-          <h3 className="inline">
-            {blog.title}
-          </h3>
+          <h3 className="inline">{blog.title}</h3>
           <FaExternalLinkAlt className="ml-2 inline md:ml-3 lg:ml-5 xl:ml-8" />
         </Link>
         <h4 className="text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">

@@ -61,7 +61,7 @@ export default function Home() {
       </section>
       <section className="flex w-full flex-wrap justify-evenly gap-6 p-4 md:gap-8 md:p-6 lg:gap-12 lg:p-8 xl:gap-16 xl:p-10 2xl:gap-20 2xl:p-12">
         {blogPosts.slice(-4).map((blog, index) => {
-          return <BlogCard blog={blog} index={index} key={index} />;
+          return <BlogCard blog={blog} index={index} key={index} length={4} />;
         })}
       </section>
     </div>

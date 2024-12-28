@@ -11,7 +11,7 @@ export default function DesktopFooter() {
               <NavLink
                 to={link.url}
                 className={({ isActive }) =>
-                  `${isActive && "text-cardColor"} text-base text-secondaryColor hover:text-cardColor xl:text-lg 2xl:text-xl`
+                  `${isActive ? "text-cardColor" : "text-secondaryColor"} text-base hover:text-cardColor xl:text-lg 2xl:text-xl`
                 }
               >
                 {link.title}
