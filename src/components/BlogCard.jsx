@@ -1,31 +1,41 @@
+import { FaExternalLinkAlt } from "react-icons/fa";
+import { Link } from "react-router";
+
 /* eslint-disable react/prop-types */
-export default function BlogCard({ blog, index }) {
+export default function BlogCard({ blog, index, length }) {
   return (
-    <div className="w-full rounded-3xl bg-cardColor p-6 md:p-8 lg:p-12 xl:p-16 2xl:p-24">
-      <div className="flex w-full flex-col items-center justify-center gap-4 md:gap-5 lg:flex-row lg:gap-8 xl:gap-10 2xl:gap-16">
-        <div className={`lg:w-1/3 ${index % 2 !== 0 && "lg:hidden"}`}>
-          <h3 className="text-base font-bold md:text-xl lg:text-2xl 2xl:text-3xl">
-            {blog.title}
-          </h3>
-          <h4 className="text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
-            {blog.tagline}
-          </h4>
-        </div>
-        <p className="rounded-3xl bg-white p-4 text-xs md:p-6 md:text-sm lg:w-2/3 lg:p-8 lg:text-base xl:p-10 xl:text-lg 2xl:p-12 2xl:text-xl">
+    <div
+      className={`flex w-full gap-4 py-4 md:gap-6 md:py-6 lg:gap-8 lg:py-8 xl:gap-10 xl:py-10 2xl:gap-12 2xl:py-12 ${index % 4 !== 0 ? "flex-col md:w-1/3 lg:w-1/4" : index === 0 ? "border-b-4 border-cardColor" : index === length - 1 ? "border-t-4 border-cardColor" : "border-y-4 border-cardColor"}`}
+    >
+      {index % 4 === 0 && index % 8 !== 0 && (
+        <p className="hidden w-2/3 text-xs md:block md:px-8 md:text-sm lg:px-12 lg:text-base xl:px-16 xl:text-lg 2xl:px-20 2xl:text-xl">
           {blog.bodyParagraphs[0]}
         </p>
-        <div className={`hidden w-1/3 ${index % 2 !== 0 && "lg:block"}`}>
-          <h3 className="text-center text-base font-bold md:text-xl lg:text-2xl 2xl:text-3xl">
+      )}
+      <div
+        className={`flex flex-col justify-center gap-4 md:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12 ${index % 4 === 0 ? "md:w-1/3" : ""}`}
+      >
+        <p className="border-b-4 text-xs uppercase md:text-sm lg:text-base xl:text-lg 2xl:text-xl">
+          {blog.author}, {new Date(blog.postedAt).toLocaleDateString()}
+        </p>
+        <Link
+          to={`/blog/${blog.id}`}
+          className="gap-2 text-base font-bold text-primaryColor hover:text-hoverColor md:gap-3 md:text-xl lg:gap-4 lg:text-2xl xl:gap-5 2xl:gap-6 2xl:text-3xl"
+        >
+          <h3 className="inline">
             {blog.title}
           </h3>
-          <h4 className="p-4 text-sm md:p-6 md:text-base lg:p-8 lg:text-lg xl:p-10 xl:text-xl 2xl:p-12 2xl:text-2xl">
-            {blog.tagline}
-          </h4>
-        </div>
+          <FaExternalLinkAlt className="ml-2 inline md:ml-3 lg:ml-5 xl:ml-8" />
+        </Link>
+        <h4 className="text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
+          {blog.tagline}
+        </h4>
       </div>
-      <p className="mt-3 text-center text-xs md:mt-5 md:text-sm lg:mt-8 lg:text-base xl:mt-10 xl:text-lg 2xl:mt-12 2xl:text-xl">
-        Posted by {blog.author}, {new Date(blog.postedAt).toLocaleDateString()}
-      </p>
+      {index % 8 === 0 && (
+        <p className="hidden w-2/3 text-xs md:block md:px-8 md:text-sm lg:px-12 lg:text-base xl:px-16 xl:text-lg 2xl:px-20 2xl:text-xl">
+          {blog.bodyParagraphs[0]}
+        </p>
+      )}
     </div>
   );
 }

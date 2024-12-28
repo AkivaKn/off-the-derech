@@ -8,6 +8,8 @@ import MobileFooter from "./components/MobileFooter";
 import { Route, Routes } from "react-router";
 import Home from "./pages/Home";
 import Resources from "./pages/Resources";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,6 +30,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/resources" element={<Resources />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:blogId" element={<BlogPost />} />
       </Routes>
       <MobileFooter />
       <DesktopFooter />

@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/prop-types */
 import { Link, useLocation } from "react-router";
 import logo from "../assets/logo.png";
 import { useEffect } from "react";
@@ -10,7 +12,7 @@ export default function MobileHeader({ isMenuOpen, setIsMenuOpen }) {
   }, [location]);
   return (
     <>
-      <header className="sticky top-0 flex h-24 w-full items-center justify-between bg-secondaryColor px-6 py-8 sm:px-8 md:px-10 lg:hidden"></header>
+      <header className="sticky -top-1 flex h-24 w-full items-center justify-between bg-secondaryColor px-6 py-8 sm:px-8 md:px-10 lg:hidden"></header>
       <Link to="/" className="lg:hidden">
         <img
           src={logo}

@@ -44,7 +44,7 @@ export default function Home() {
           );
         })}
       </section>
-      <section className="flex flex-col items-center bg-backgroundColor py-8 sm:py-12 md:py-16 lg:py-24 xl:py-32 2xl:py-40">
+      <section className="flex flex-col items-center bg-white py-8 sm:py-12 md:py-16 lg:py-24 xl:py-32 2xl:py-40">
         <h2 className="mb-3 text-lg font-bold text-primaryColor md:mb-5 md:text-2xl lg:mb-8 lg:text-3xl xl:mb-10 2xl:mb-12 2xl:text-4xl">
           {support.title}
         </h2>
@@ -59,8 +59,8 @@ export default function Home() {
           );
         })}
       </section>
-      <section className="flex w-full flex-col gap-4 p-4 md:gap-6 md:p-6 lg:gap-8 lg:p-8 xl:gap-10 xl:p-10 2xl:gap-12 2xl:p-12">
-        {blogPosts.map((blog, index) => {
+      <section className="flex w-full flex-wrap justify-evenly gap-6 p-4 md:gap-8 md:p-6 lg:gap-12 lg:p-8 xl:gap-16 xl:p-10 2xl:gap-20 2xl:p-12">
+        {blogPosts.slice(-4).map((blog, index) => {
           return <BlogCard blog={blog} index={index} key={index} />;
         })}
       </section>
