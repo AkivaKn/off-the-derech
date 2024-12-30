@@ -15,7 +15,7 @@ export default function BlogCard({ blog, index, length }) {
     return screen.width - rect.left + el.offsetWidth / 2;
   }
   useGSAP(() => {
-    let mediaQuery = window.matchMedia("(max-width:1023px)");
+    let mediaQuery = window.matchMedia("(max-width:767px)");
     if (mediaQuery.matches) {
       index % 2 === 0 &&
         gsap.from(blogCardRef.current, {
