@@ -15,34 +15,60 @@ export default function BlogCard({ blog, index, length }) {
     return screen.width - rect.left + el.offsetWidth / 2;
   }
   useGSAP(() => {
-    index % 8 === 0 &&
-      gsap.from(blogCardRef.current, {
-        x: (i, t) => {
-          return setOffScreen(t);
-        },
-        duration: 3,
-        scrollTrigger: {
-          trigger: blogCardRef.current,
-        },
-      });
-      index % 4 === 0 && index % 8 !== 0 &&
-      gsap.from(blogCardRef.current, {
-        x: (i, t) => {
-          return -setOffScreen(t);
-        },
-        duration: 3,
-        scrollTrigger: {
-          trigger: blogCardRef.current,
-        },
-      });
-    index % 4 !== 0 &&
-      gsap.from(blogCardRef.current, {
-        opacity: 0,
-        duration: 3,
-        scrollTrigger: {
-          trigger: blogCardRef.current,
-        },
-      });
+    let mediaQuery = window.matchMedia("(max-width:1023px)");
+    if (mediaQuery.matches) {
+      index % 2 === 0 &&
+        gsap.from(blogCardRef.current, {
+          x: (i, t) => {
+            return setOffScreen(t);
+          },
+          duration: 2,
+          scrollTrigger: {
+            trigger: blogCardRef.current,
+          },
+        });
+      index % 2 !== 0 &&
+        index % 8 !== 0 &&
+        gsap.from(blogCardRef.current, {
+          x: (i, t) => {
+            return -setOffScreen(t);
+          },
+          duration: 2,
+          scrollTrigger: {
+            trigger: blogCardRef.current,
+          },
+        });
+    } else {
+      index % 8 === 0 &&
+        gsap.from(blogCardRef.current, {
+          x: (i, t) => {
+            return setOffScreen(t);
+          },
+          duration: 2,
+          scrollTrigger: {
+            trigger: blogCardRef.current,
+          },
+        });
+      index % 4 === 0 &&
+        index % 8 !== 0 &&
+        gsap.from(blogCardRef.current, {
+          x: (i, t) => {
+            return -setOffScreen(t);
+          },
+          duration: 2,
+          scrollTrigger: {
+            trigger: blogCardRef.current,
+          },
+        });
+      index % 4 !== 0 &&
+        gsap.from(blogCardRef.current, {
+          opacity: 0,
+          duration: 2,
+          scrollTrigger: {
+            trigger: blogCardRef.current,
+          },
+        });
+    }
   });
   return (
     <div
