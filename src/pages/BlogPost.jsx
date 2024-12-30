@@ -1,9 +1,9 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { blogPosts } from "../lib/blog";
 
-export default function BlogPost() {
+export default function BlogPost({blogPosts}) {
   const { blogId } = useParams();
   const [currentBlog, setCurrentBlog] = useState({});
   const [notFound, setNotFound] = useState(false);
@@ -31,10 +31,10 @@ export default function BlogPost() {
           </h3>
           <p className="border-b-4 text-xs uppercase md:text-sm lg:text-base xl:text-lg 2xl:text-xl">
             {currentBlog?.author},{" "}
-            {new Date(currentBlog?.postedAt).toLocaleDateString()}
+            {new Date(currentBlog?.posted).toLocaleDateString()}
           </p>
-          {currentBlog?.bodyParagraphs?.map((paragraph, index) => {
-            return <p key={index} className="text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl">{paragraph}</p>;
+          {currentBlog?.paragraphs?.map((paragraph, index) => {
+            return <p key={index} className="text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl">{paragraph.paragraph}</p>;
           })}
         </div>
       )}

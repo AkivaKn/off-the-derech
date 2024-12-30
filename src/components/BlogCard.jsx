@@ -77,14 +77,14 @@ export default function BlogCard({ blog, index, length }) {
     >
       {index % 4 === 0 && index % 8 !== 0 && (
         <p className="hidden w-2/3 text-xs md:block md:px-8 md:text-sm lg:px-12 lg:text-base xl:px-16 xl:text-lg 2xl:px-20 2xl:text-xl">
-          {blog.bodyParagraphs[0]}
+          {blog.paragraphs[0].paragraph}
         </p>
       )}
       <div
         className={`flex flex-col justify-center gap-4 md:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12 ${index % 4 === 0 ? "md:w-1/3" : ""}`}
       >
         <p className="border-b-4 text-xs uppercase md:text-sm lg:text-base xl:text-lg 2xl:text-xl">
-          {blog.author}, {new Date(blog.postedAt).toLocaleDateString()}
+          {blog.author}, {new Date(blog.posted).toLocaleDateString()}
         </p>
         <Link
           to={`/blog/${blog.id}`}
@@ -99,7 +99,7 @@ export default function BlogCard({ blog, index, length }) {
       </div>
       {index % 8 === 0 && (
         <p className="hidden w-2/3 text-xs md:block md:px-8 md:text-sm lg:px-12 lg:text-base xl:px-16 xl:text-lg 2xl:px-20 2xl:text-xl">
-          {blog.bodyParagraphs[0]}
+          {blog.paragraphs[0].paragraph}
         </p>
       )}
     </div>

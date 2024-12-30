@@ -15,12 +15,23 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { setOffScreen } from "./lib/utils";
+import { getBlogPosts, getHomePage } from "./api/content";
 gsap.registerPlugin(useGSAP);
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [menuTween, setMenuTween] = useState(gsap.timeline({ paused: true }));
+  const [menuTween] = useState(gsap.timeline({ paused: true }));
+  const [homePage, setHomePage] = useState({});
+  const [blogPosts, setBlogPosts] = useState([]);
   const menuRef = useRef();
+  useEffect(() => {
+    getHomePage().then((data) => {
+      setHomePage(data);
+    });
+    getBlogPosts().then((data) => {
+      setBlogPosts(data);
+    });
+  }, []);
   useEffect(() => {
     if (isMenuOpen) {
       document.body.classList.add("overflow-hidden");
@@ -53,10 +64,16 @@ function App() {
       <DesktopNavbar />
       <div className="hidden h-[12vh] lg:block"></div>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={<Home homePage={homePage} blogPosts={blogPosts} />}
+        />
         <Route path="/resources" element={<Resources />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:blogId" element={<BlogPost />} />
+        <Route path="/blog" element={<Blog blogPosts={blogPosts} />} />
+        <Route
+          path="/blog/:blogId"
+          element={<BlogPost blogPosts={blogPosts} />}
+        />
         <Route path="/contact" element={<Contact />} />
       </Routes>
       <MobileFooter />
