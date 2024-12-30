@@ -2,10 +2,28 @@ import { Link } from "react-router";
 import { definition, heroSection, support } from "../lib/homePage";
 import { blogPosts } from "../lib/blog";
 import BlogCard from "../components/BlogCard";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(useGSAP);
 
 export default function Home() {
+  const supportRef = useRef();
+  const containerRef = useRef();
+  useGSAP(
+    () => {
+      gsap.from(supportRef.current, {
+        scrollTrigger: { trigger: supportRef.current },
+        opacity: 0,
+        duration: 3,
+      });
+    },
+    { scope: containerRef },
+  );
   return (
-    <div className="flex-1 bg-backgroundColor">
+    <div ref={containerRef} className="flex-1 bg-backgroundColor">
       <section className="flex flex-col items-center justify-center gap-6 bg-primaryColor p-12 sm:p-16 md:p-28 lg:flex-row lg:gap-24">
         <div className="flex w-full flex-col justify-center gap-3 self-end lg:w-1/3 lg:gap-8">
           <h2 className="text-lg font-bold text-secondaryColor md:text-2xl lg:text-3xl 2xl:text-4xl">
@@ -44,7 +62,10 @@ export default function Home() {
           );
         })}
       </section>
-      <section className="flex flex-col items-center bg-white py-8 sm:py-12 md:py-16 lg:py-24 xl:py-32 2xl:py-40">
+      <section
+        ref={supportRef}
+        className="flex flex-col items-center bg-white py-8 sm:py-12 md:py-16 lg:py-24 xl:py-32 2xl:py-40"
+      >
         <h2 className="mb-3 text-lg font-bold text-primaryColor md:mb-5 md:text-2xl lg:mb-8 lg:text-3xl xl:mb-10 2xl:mb-12 2xl:text-4xl">
           {support.title}
         </h2>

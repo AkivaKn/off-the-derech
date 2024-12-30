@@ -1,10 +1,52 @@
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { Link } from "react-router";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(useGSAP);
 
 /* eslint-disable react/prop-types */
 export default function BlogCard({ blog, index, length }) {
+  const blogCardRef = useRef();
+  function setOffScreen(el) {
+    var rect = el.getBoundingClientRect();
+    return screen.width - rect.left + el.offsetWidth / 2;
+  }
+  useGSAP(() => {
+    index % 8 === 0 &&
+      gsap.from(blogCardRef.current, {
+        x: (i, t) => {
+          return setOffScreen(t);
+        },
+        duration: 3,
+        scrollTrigger: {
+          trigger: blogCardRef.current,
+        },
+      });
+      index % 4 === 0 && index % 8 !== 0 &&
+      gsap.from(blogCardRef.current, {
+        x: (i, t) => {
+          return -setOffScreen(t);
+        },
+        duration: 3,
+        scrollTrigger: {
+          trigger: blogCardRef.current,
+        },
+      });
+    index % 4 !== 0 &&
+      gsap.from(blogCardRef.current, {
+        opacity: 0,
+        duration: 3,
+        scrollTrigger: {
+          trigger: blogCardRef.current,
+        },
+      });
+  });
   return (
     <div
+      ref={blogCardRef}
       className={`flex w-full gap-4 py-4 md:gap-6 md:py-6 lg:gap-8 lg:py-8 xl:gap-10 xl:py-10 2xl:gap-12 2xl:py-12 ${index % 4 !== 0 ? "flex-col md:w-1/4" : index === 0 ? "md:border-b-4 md:border-cardColor" : index === length - 1 ? "md:border-t-4 md:border-cardColor" : "md:border-y-4 md:border-cardColor"}`}
     >
       {index % 4 === 0 && index % 8 !== 0 && (
