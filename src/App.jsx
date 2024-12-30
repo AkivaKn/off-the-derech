@@ -15,7 +15,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { setOffScreen } from "./lib/utils";
-import { getBlogPosts, getHomePage } from "./api/content";
+import { getBlogPosts, getHomePage, getResourcePage } from "./api/content";
 gsap.registerPlugin(useGSAP);
 
 function App() {
@@ -23,6 +23,7 @@ function App() {
   const [menuTween] = useState(gsap.timeline({ paused: true }));
   const [homePage, setHomePage] = useState({});
   const [blogPosts, setBlogPosts] = useState([]);
+  const [resourcePage,setResourcePage] = useState({resource_categories:[]})
   const menuRef = useRef();
   useEffect(() => {
     getHomePage().then((data) => {
@@ -30,6 +31,9 @@ function App() {
     });
     getBlogPosts().then((data) => {
       setBlogPosts(data);
+    });
+    getResourcePage().then((data) => {
+      setResourcePage(data);
     });
   }, []);
   useEffect(() => {
@@ -68,7 +72,7 @@ function App() {
           path="/"
           element={<Home homePage={homePage} blogPosts={blogPosts} />}
         />
-        <Route path="/resources" element={<Resources />} />
+        <Route path="/resources" element={<Resources resourcePage={resourcePage}/>} />
         <Route path="/blog" element={<Blog blogPosts={blogPosts} />} />
         <Route
           path="/blog/:blogId"

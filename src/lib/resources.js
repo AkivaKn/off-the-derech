@@ -2,10 +2,10 @@ export const resources = {
   title: "Resources",
   subtitle:
     "A collection of resources useful for people who may be leaving the Ultra Orthodox lifestyle.",
-  content: [
+  resource_categories: [
     {
       title: "Education",
-      subContent: [
+      resource_subcategories: [
         {
           title: "General",
           resources: [
@@ -168,11 +168,11 @@ export const resources = {
           resources: [
             {
               title: "Local Community Centres",
-              body: "Local community centres often host events and courses that can be a great way to meet new people and get involved in your community. Check your local council website for information on local community centres",
+              body: "Local community centres often host events and courses that can be a great way to meet new people and get involved in your community. Check your local council website for information on local community centres.",
             },
             {
               title: "Volunteering",
-              body: "Volunteering for a cause you believe in can be a great way to make a difference and meet like minded people. You can check local volunteering opportunities online or at your local council. ",
+              body: "Volunteering for a cause you believe in can be a great way to make a difference and meet like minded people. You can check local volunteering opportunities online or at your local council.",
             },
           ],
         },
