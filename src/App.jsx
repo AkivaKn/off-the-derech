@@ -49,7 +49,7 @@ function App() {
     >
       <MobileHeader isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
       <MobileMenu menuRef={menuRef} />
-      <div className="h-[96px] lg:hidden"></div>
+      <div className="h-[92px] lg:hidden"></div>
       <DesktopNavbar />
       <div className="hidden h-[12vh] lg:block"></div>
       <Routes>
