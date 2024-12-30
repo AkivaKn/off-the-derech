@@ -11,9 +11,16 @@ import Resources from "./pages/Resources";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+import { setOffScreen } from "./lib/utils";
+gsap.registerPlugin(useGSAP);
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [menuTween, setMenuTween] = useState(gsap.timeline({ paused: true }));
+  const menuRef = useRef();
   useEffect(() => {
     if (isMenuOpen) {
       document.body.classList.add("overflow-hidden");
@@ -21,13 +28,30 @@ function App() {
       document.body.classList.remove("overflow-hidden");
     }
   }, [isMenuOpen]);
+  useGSAP(() => {
+    menuTween
+      .from(menuRef.current, {
+        x: (i, t) => {
+          return setOffScreen(t);
+        },
+        duration: 1,
+      })
+      .reverse();
+  });
+  const toggleMenu = function () {
+    menuTween.reversed(!menuTween.reversed());
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <div
-      className={`flex min-h-screen w-screen flex-col justify-between ${isMenuOpen && "overscroll-none"}`}
+      className={`flex min-h-screen w-screen flex-col justify-between overflow-x-hidden ${isMenuOpen && "overscroll-none"}`}
     >
-      <MobileHeader isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-      {isMenuOpen && <MobileMenu />}
+      <MobileHeader isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+      <MobileMenu menuRef={menuRef} />
+      <div className="h-[115px] lg:hidden"></div>
       <DesktopNavbar />
+      <div className="hidden h-[12vh] lg:block"></div>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/resources" element={<Resources />} />

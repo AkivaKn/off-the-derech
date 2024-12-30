@@ -1,9 +1,22 @@
 import { useState } from "react";
 import { resources } from "../lib/resources";
 import { FaExternalLinkAlt } from "react-icons/fa";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(useGSAP);
 
 export default function Resources() {
   const [currentResource, setCurrentResource] = useState(0);
+  const cardRef = useRef();
+  useGSAP(() => {
+    gsap.from(cardRef.current, {
+      opacity: 0,
+      duration: 1.5,
+    });
+  },{dependencies:[currentResource]});
   return (
     <div className="flex-1 bg-backgroundColor">
       <section className="my-6 flex w-full justify-center px-10 sm:px-14 md:my-8 md:px-20 lg:my-10 lg:px-24 xl:my-14 xl:px-28 2xl:my-16">
@@ -34,47 +47,49 @@ export default function Resources() {
       </section>
       <section className="mb-6 flex w-full justify-center px-10 sm:px-14 md:mb-8 md:px-20 lg:mb-10 lg:px-24 xl:mb-14 xl:px-28 2xl:mb-16">
         <div className="w-full rounded-3xl bg-cardColor p-10 lg:w-3/4 lg:p-12 xl:p-16 2xl:p-20">
-          <h3 className="text-center text-lg font-bold md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl">
-            {resources?.content[currentResource]?.title}
-          </h3>
-          <ul className="space-y-5 md:space-y-7 lg:space-y-10 xl:space-y-12 2xl:space-y-16">
-            {resources?.content[currentResource]?.subContent.map(
-              (subContent, index) => {
-                return (
-                  <li key={index} className="list-none">
-                    <h4 className="text-base font-bold md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
-                      {subContent.title}
-                    </h4>
-                    <ul className="space-y-3 md:space-y-4 lg:space-y-6 xl:space-y-8 2xl:space-y-10">
-                      {subContent.resources.map((resource, index) => {
-                        return (
-                          <li key={index}>
-                            {resource.link ? (
-                              <a
-                                href={resource.link.url}
-                                target="_blank"
-                                className="flex items-center gap-2 text-sm font-bold hover:text-primaryColor md:gap-3 md:text-base lg:gap-4 lg:text-lg xl:gap-5 xl:text-xl 2xl:gap-6 2xl:text-2xl"
-                              >
-                                <p>{resource.link.text}</p>{" "}
-                                <FaExternalLinkAlt />
-                              </a>
-                            ) : (
-                              <h4 className="text-sm font-bold md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
-                                {resource.title}
-                              </h4>
-                            )}
-                            <p className="text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl">
-                              {resource.body}
-                            </p>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </li>
-                );
-              },
-            )}
-          </ul>
+          <div ref={cardRef}>
+            <h3 className="text-center text-lg font-bold md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl">
+              {resources?.content[currentResource]?.title}
+            </h3>
+            <ul className="space-y-5 md:space-y-7 lg:space-y-10 xl:space-y-12 2xl:space-y-16">
+              {resources?.content[currentResource]?.subContent.map(
+                (subContent, index) => {
+                  return (
+                    <li key={index} className="list-none">
+                      <h4 className="text-base font-bold md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
+                        {subContent.title}
+                      </h4>
+                      <ul className="space-y-3 md:space-y-4 lg:space-y-6 xl:space-y-8 2xl:space-y-10">
+                        {subContent.resources.map((resource, index) => {
+                          return (
+                            <li key={index}>
+                              {resource.link ? (
+                                <a
+                                  href={resource.link.url}
+                                  target="_blank"
+                                  className="flex items-center gap-2 text-sm font-bold hover:text-primaryColor md:gap-3 md:text-base lg:gap-4 lg:text-lg xl:gap-5 xl:text-xl 2xl:gap-6 2xl:text-2xl"
+                                >
+                                  <p>{resource.link.text}</p>{" "}
+                                  <FaExternalLinkAlt />
+                                </a>
+                              ) : (
+                                <h4 className="text-sm font-bold md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
+                                  {resource.title}
+                                </h4>
+                              )}
+                              <p className="text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl">
+                                {resource.body}
+                              </p>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </li>
+                  );
+                },
+              )}
+            </ul>
+          </div>
         </div>
       </section>
     </div>
