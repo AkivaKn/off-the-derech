@@ -5,10 +5,11 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
+import Loading from "../components/Loading";
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(useGSAP);
 
-export default function Resources({ resourcePage }) {
+export default function Resources({ resourcePage, loadingResources }) {
   const [currentResource, setCurrentResource] = useState(0);
   const cardRef = useRef();
   useGSAP(
@@ -18,9 +19,11 @@ export default function Resources({ resourcePage }) {
         duration: 1.5,
       });
     },
-    { dependencies: [currentResource] },
+    { dependencies: [currentResource, resourcePage] },
   );
-  return (
+  return loadingResources ? (
+    <Loading />
+  ) : (
     <div className="flex-1 bg-backgroundColor">
       <section className="my-6 flex w-full justify-center px-10 sm:px-14 md:my-8 md:px-20 lg:my-10 lg:px-24 xl:my-14 xl:px-28 2xl:my-16">
         <div className="flex flex-col gap-4 md:gap-6 lg:w-3/4 lg:gap-8 lg:pr-32 xl:pr-44">

@@ -44,7 +44,7 @@ export default function BlogCard({ blog, index, length }) {
           x: (i, t) => {
             return setOffScreen(t);
           },
-          duration: 2,
+          duration: 3,
           scrollTrigger: {
             trigger: blogCardRef.current,
           },
@@ -55,7 +55,7 @@ export default function BlogCard({ blog, index, length }) {
           x: (i, t) => {
             return -setOffScreen(t);
           },
-          duration: 2,
+          duration: 3,
           scrollTrigger: {
             trigger: blogCardRef.current,
           },
@@ -63,6 +63,7 @@ export default function BlogCard({ blog, index, length }) {
       index % 4 !== 0 &&
         gsap.from(blogCardRef.current, {
           opacity: 0,
+          y: 100,
           duration: 2,
           scrollTrigger: {
             trigger: blogCardRef.current,

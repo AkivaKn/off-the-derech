@@ -23,17 +23,23 @@ function App() {
   const [menuTween] = useState(gsap.timeline({ paused: true }));
   const [homePage, setHomePage] = useState({});
   const [blogPosts, setBlogPosts] = useState([]);
-  const [resourcePage,setResourcePage] = useState({resource_categories:[]})
+  const [resourcePage, setResourcePage] = useState({ resource_categories: [] });
+  const [loadingHome, setLoadingHome] = useState(true);
+  const [loadingBlogPosts, setLoadingBlogPosts] = useState(true);
+  const [loadingResources, setLoadingResources] = useState(true);
   const menuRef = useRef();
   useEffect(() => {
     getHomePage().then((data) => {
       setHomePage(data);
+      setLoadingHome(false);
     });
     getBlogPosts().then((data) => {
       setBlogPosts(data);
+      setLoadingBlogPosts(false);
     });
     getResourcePage().then((data) => {
       setResourcePage(data);
+      setLoadingResources(false)
     });
   }, []);
   useEffect(() => {
@@ -70,10 +76,29 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Home homePage={homePage} blogPosts={blogPosts} />}
+          element={
+            <Home
+              homePage={homePage}
+              blogPosts={blogPosts}
+              loadingHome={loadingHome}
+            />
+          }
         />
-        <Route path="/resources" element={<Resources resourcePage={resourcePage}/>} />
-        <Route path="/blog" element={<Blog blogPosts={blogPosts} />} />
+        <Route
+          path="/resources"
+          element={
+            <Resources
+              resourcePage={resourcePage}
+              loadingResources={loadingResources}
+            />
+          }
+        />
+        <Route
+          path="/blog"
+          element={
+            <Blog blogPosts={blogPosts} loadingBlogPosts={loadingBlogPosts} />
+          }
+        />
         <Route
           path="/blog/:blogId"
           element={<BlogPost blogPosts={blogPosts} />}

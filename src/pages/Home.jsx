@@ -5,10 +5,11 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
+import Loading from "../components/Loading";
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(useGSAP);
 
-export default function Home({ homePage,blogPosts }) {
+export default function Home({ homePage, blogPosts, loadingHome }) {
   const supportRef = useRef();
   const containerRef = useRef();
   useGSAP(
@@ -21,7 +22,9 @@ export default function Home({ homePage,blogPosts }) {
     },
     { scope: containerRef, dependencies: [homePage] },
   );
-  return (
+  return loadingHome ? (
+    <Loading />
+  ) : (
     <div ref={containerRef} className="flex-1 bg-backgroundColor">
       <section className="flex flex-col items-center justify-center gap-6 bg-primaryColor p-12 sm:p-16 md:p-28 lg:flex-row lg:gap-24">
         <div className="flex w-full flex-col justify-center gap-3 self-end lg:w-1/3 lg:gap-8">
