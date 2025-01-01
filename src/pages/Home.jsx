@@ -53,9 +53,6 @@ export default function Home({ homePage, blogPosts, loadingHome }) {
         <h2 className="mb-3 text-lg font-bold text-primaryColor md:mb-5 md:text-2xl lg:mb-8 lg:text-3xl xl:mb-10 2xl:mb-12 2xl:text-4xl">
           {homePage?.definition?.title}
         </h2>
-        <p className="mb-2 w-5/6 text-sm md:mb-3 md:w-2/3 md:text-base lg:mb-5 lg:w-1/2 lg:text-lg xl:mb-7 2xl:mb-10 2xl:text-xl">
-          {homePage?.definition?.body}
-        </p>
         {homePage?.definition?.paragraphs?.map((paragraph, index) => {
           return (
             <p

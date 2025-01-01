@@ -16,6 +16,9 @@ import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { setOffScreen } from "./lib/utils";
 import { getBlogPosts, getHomePage, getResourcePage } from "./api/content";
+import { home } from "./lib/homePage";
+import { blogs } from "./lib/blog";
+import { resource } from "./lib/resources";
 gsap.registerPlugin(useGSAP);
 
 function App() {
@@ -29,18 +32,24 @@ function App() {
   const [loadingResources, setLoadingResources] = useState(true);
   const menuRef = useRef();
   useEffect(() => {
-    getHomePage().then((data) => {
-      setHomePage(data);
-      setLoadingHome(false);
-    });
-    getBlogPosts().then((data) => {
-      setBlogPosts(data);
-      setLoadingBlogPosts(false);
-    });
-    getResourcePage().then((data) => {
-      setResourcePage(data);
-      setLoadingResources(false)
-    });
+    // getHomePage().then((data) => {
+    //   setHomePage(data);
+    //   setLoadingHome(false);
+    // });
+    setHomePage(home);
+    setLoadingHome(false);
+    // getBlogPosts().then((data) => {
+    //   setBlogPosts(data);
+    //   setLoadingBlogPosts(false);
+    // });
+    setBlogPosts(blogs);
+    setLoadingBlogPosts(false);
+    // getResourcePage().then((data) => {
+    //   setResourcePage(data);
+    //   setLoadingResources(false)
+    // });
+    setResourcePage(resource);
+    setLoadingResources(false);
   }, []);
   useEffect(() => {
     if (isMenuOpen) {

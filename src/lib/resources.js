@@ -1,11 +1,11 @@
-export const resources = {
+export const resource = {
   title: "Resources",
   subtitle:
     "A collection of resources useful for people who may be leaving the Ultra Orthodox lifestyle.",
   resource_categories: [
     {
       title: "Education",
-      resource_subcategories: [
+      resource_subcatgories: [
         {
           title: "General",
           resources: [
@@ -49,7 +49,7 @@ export const resources = {
     },
     {
       title: "Finance",
-      subContent: [
+      resource_subcatgories: [
         {
           title: "Living Costs",
           resources: [
@@ -103,7 +103,7 @@ export const resources = {
     },
     {
       title: "Mental Health",
-      subContent: [
+      resource_subcatgories: [
         {
           title: "General Support",
           resources: [
@@ -146,7 +146,7 @@ export const resources = {
     },
     {
       title: "Social",
-      subContent: [
+      resource_subcatgories: [
         {
           title: "Community and Support",
           resources: [
